@@ -1,10 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Game = () => {
+  const [isXNext, setIsXNext] = useState(true);
+  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const currentSquares = history[history.length - 1];
+
+  const handlePlay = (nextSquares) => {
+    setHistory([...history, nextSquares]);
+    setIsXNext(!isXNext);
+  };
+
   return (
     <div className="game">
       <div className="game-board">
-        <Board />
+        <Board isXNext={isXNext} squares={currentSquares} onPlay={handlePlay} />
       </div>
 
       <div className="game-info">
@@ -14,10 +23,7 @@ const Game = () => {
   );
 };
 
-const Board = () => {
-  const [squares, setSquares] = useState(Array(9).fill(null));
-  const [isXNext, setIsXNext] = useState(true);
-
+const Board = ({ isXNext, squares, onPlay }) => {
   const winner = calculateWinner(squares);
   let status;
 
@@ -34,8 +40,7 @@ const Board = () => {
     const squareValue = isXNext ? 'X' : 'O';
     nextSquares[idx] = squareValue;
 
-    setSquares(nextSquares);
-    setIsXNext(!isXNext);
+    onPlay(nextSquares);
   };
 
   return (
@@ -93,4 +98,4 @@ const calculateWinner = (squares) => {
   return null;
 };
 
-export default Board;
+export default Game;

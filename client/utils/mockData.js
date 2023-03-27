@@ -1,5 +1,3 @@
-import React from 'react';
-
 const mockData = [
   { category: 'Fruits', price: '$1', stocked: true, name: 'Apple' },
   { category: 'Fruits', price: '$1', stocked: true, name: 'Dragonfruit' },
@@ -9,8 +7,4 @@ const mockData = [
   { category: 'Vegetables', price: '$1', stocked: true, name: 'Peas' },
 ];
 
-const Mockup = () => {
-  return <div></div>;
-};
-
-export default Mockup;
+export default mockData;

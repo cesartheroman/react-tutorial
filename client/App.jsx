@@ -1,3 +1,3 @@
-import Mockup from './components/Mockup';
+import FilterableProductTable from './components/ProductDataTable/FilterableProductTable';
 
-export default Mockup;
+export default FilterableProductTable;

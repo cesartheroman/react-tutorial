@@ -1,3 +1,3 @@
-import Game from './components/Game';
+import Mockup from './components/Mockup';
 
-export default Game;
+export default Mockup;

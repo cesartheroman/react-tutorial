@@ -1,13 +1,13 @@
 import React from 'react';
 import SearchBar from './SearchBar';
 import ProductTable from './ProductTable';
-import mockData from '../../utils/mockData';
+import PRODUCTS from '../../utils/products';
 
 const FilterableProductTable = () => {
   return (
     <div>
       <SearchBar />
-      <ProductTable products={mockData} />
+      <ProductTable products={PRODUCTS} />
     </div>
   );
 };

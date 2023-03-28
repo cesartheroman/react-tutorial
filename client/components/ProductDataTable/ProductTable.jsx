@@ -1,12 +1,21 @@
 import React from 'react';
+
 import ProductCategoryRow from './ProductCategoryRow';
 import ProductRow from './ProductRow';
 
-const ProductTable = ({ products }) => {
+const ProductTable = ({ products, searchText, inStockOnly }) => {
   const rows = [];
   let lastCategory = null;
 
   products.forEach((product) => {
+    const searchTextFound = product.name
+      .toLowerCase()
+      .includes(searchText.toLowerCase());
+
+    if (!searchTextFound) return;
+
+    if (inStockOnly && !product.stocked) return;
+
     if (product.category !== lastCategory) {
       rows.push(
         <ProductCategoryRow

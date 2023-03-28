@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
-
-import PRODUCTS from '../../utils/products';
+import React, { useEffect, useState } from 'react';
 
 import SearchBar from './SearchBar';
 import ProductTable from './ProductTable';
@@ -8,6 +6,16 @@ import ProductTable from './ProductTable';
 const FilterableProductTable = () => {
   const [searchText, setSearchText] = useState('');
   const [inStockOnly, setinStockOnly] = useState(false);
+  const [products, setProducts] = useState();
+
+  const fetchProducts = async () => {
+    const { data } = await (await fetch('/api/products')).json();
+    setProducts(data);
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  });
 
   return (
     <div>
@@ -17,11 +25,13 @@ const FilterableProductTable = () => {
         onSearchTextChange={setSearchText}
         onInStockOnlyChange={setinStockOnly}
       />
-      <ProductTable
-        products={PRODUCTS}
-        searchText={searchText}
-        inStockOnly={inStockOnly}
-      />
+      {products && (
+        <ProductTable
+          products={products}
+          searchText={searchText}
+          inStockOnly={inStockOnly}
+        />
+      )}
     </div>
   );
 };

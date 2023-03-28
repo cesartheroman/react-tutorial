@@ -1,3 +1,3 @@
-import Game from './components/Game';
+import FilterableProductTable from './components/ProductDataTable/FilterableProductTable';
 
-export default Game;
+export default FilterableProductTable;
